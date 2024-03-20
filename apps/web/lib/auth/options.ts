@@ -178,6 +178,8 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
+    signIn: "/login",
+    signOut: "/login",
     error: "/login",
   },
   callbacks: {
@@ -325,13 +327,12 @@ export const authOptions: NextAuthOptions = {
         // (this is a workaround because the `isNewUser` flag is triggered when a user does `dangerousEmailAccountLinking`)
         if (
           user?.createdAt &&
-          new Date(user.createdAt).getTime() > Date.now() - 10000 &&
-          process.env.NEXT_PUBLIC_IS_DUB
+          new Date(user.createdAt).getTime() > Date.now() - 10000
         ) {
           await Promise.allSettled([
             subscribe({ email, name: user.name || undefined }),
             sendEmail({
-              subject: "Welcome to Dub.co!",
+              subject: "Welcome to 7QR!",
               email,
               react: WelcomeEmail({
                 email,

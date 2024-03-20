@@ -12,5 +12,5 @@ export default async function OldLinksStatsPage({
   if (!projects || projects.length === 0) {
     redirect("/");
   }
-  redirect(`/${projects[0].slug}/analytics?domain=dub.sh&key=${params.key}`);
+  redirect(`/${projects[0].slug}/analytics?domain=${process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN}&key=${params.key}`);
 }

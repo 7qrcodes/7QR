@@ -29,7 +29,7 @@ export async function generateStaticParams() {
             verified: true,
             target: null,
             NOT: {
-              slug: "dub.sh",
+              slug: process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN,
             },
           },
           select: {
