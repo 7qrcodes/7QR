@@ -1,0 +1,23 @@
+name: Deploy staging dashboard
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+      - ".github/**"
+      - "package.json"
+    branches:
+      - main
+
+jobs:
+  preview:
+    uses: ./.github/workflows/template-deploy.yml
+    with:
+      vercel_org_id: team_C4VZgUPr0FlKic3I11Ygmgkt
+      vercel_project_id: prj_hS2Lxn79Suh8zrwwr2TFz28u429h
+      project_name: dashboard
+      environment: production
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
