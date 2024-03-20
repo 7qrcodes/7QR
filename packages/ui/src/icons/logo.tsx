@@ -1,29 +1,34 @@
 import { cn } from "@dub/utils";
 
 export default function Logo({ className }: { className?: string }) {
+  const blueColor = "#BCE7FD";
+  const orangeColor = "#FF934F";
+  const baseColor = "#08272E";
+
   return (
     <svg
       width="191"
       height="191"
-      viewBox="0 0 191 191"
+      viewBox="0 0 360 360"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={cn("h-10 w-10 text-black", className)}
     >
-      <g clipPath="url(#clip0_1301_107)">
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M122 -14H144 9.17859 129.788 5.96937 122 3.72462V-14ZM122 3.72462C113.586 1.29941 104.695 0 95.5 0C42.7568 0 0 42.7568 0 95.5C0 148.243 42.7568 191 95.5 191C148.243 191 191 148.243 191 95.5C191 60.462 172.131 29.8311 144 13.2146V100V148H122V140.897C114.258 146.018 104.977 149 95 149C67.938 149 46 127.062 46 100C46 72.938 67.938 51 95 51C104.977 51 114.258 53.982 122 59.1034V3.72462Z"
-          fill="currentColor"
-          shapeRendering="geometricPrecision"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_1301_107">
-          <rect width="191" height="191" rx="95.5" fill="white" />
-        </clipPath>
-      </defs>
+      <path
+        d="M0 180C0 80.5887 80.5887 0 180 0V0C279.411 0 360 80.5887 360 180V180V180C360 279.411 279.411 360 180 360V360C80.5887 360 0 279.411 0 180V180Z"
+        fill={baseColor}
+        shapeRendering="geometricPrecision"
+      />
+      <path
+        d="M193.246 280H130.361C136.937 236.784 158.002 197.589 193.554 162.417H104.159V127.876H256.439V156.502C216.982 196.249 195.917 237.415 193.246 280Z"
+        fill={blueColor}
+        shapeRendering="geometricPrecision"
+      />
+      <path
+        d="M104 80H256.223V109.268H104V80Z"
+        fill={orangeColor}
+        shapeRendering="geometricPrecision"
+      />
     </svg>
   );
 }

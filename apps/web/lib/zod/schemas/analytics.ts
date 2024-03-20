@@ -8,7 +8,7 @@ export const getAnalyticsQuerySchema = z.object({
     .string()
     .optional()
     .describe(
-      "The slug for the project that the link belongs to. E.g. for `app.dub.co/acme`, the projectSlug is `acme`.",
+      "The slug for the project that the link belongs to. E.g. for `app.7qr.codes/acme`, the projectSlug is `acme`.",
     ),
   domain: z.string().optional().describe("The domain of the short link."),
   key: z.string().optional().describe("The short link slug."),

@@ -1,6 +1,6 @@
 {
   "name": "@dub/ui",
-  "description": "UI components for Dub.co",
+  "description": "UI components for 7QR",
   "version": "0.0.58",
   "sideEffects": false,
   "main": "./dist/index.js",

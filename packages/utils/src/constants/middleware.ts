@@ -1,20 +1,20 @@
 export const DEFAULT_REDIRECTS = {
-  home: "https://dub.co",
-  dub: "https://dub.co",
-  signin: "https://app.dub.co/login",
-  login: "https://app.dub.co/login",
-  register: "https://app.dub.co/register",
-  signup: "https://app.dub.co/register",
-  app: "https://app.dub.co",
-  dashboard: "https://app.dub.co",
-  links: "https://app.dub.co/links",
-  settings: "https://app.dub.co/settings",
-  welcome: "https://app.dub.co/welcome",
+  home: "https://7qr.codes",
+  dub: "https://7qr.codes",
+  signin: "https://app.7qr.codes/login",
+  login: "https://app.7qr.codes/login",
+  register: "https://app.7qr.codes/register",
+  signup: "https://app.7qr.codes/register",
+  app: "https://app.7qr.codes",
+  dashboard: "https://app.7qr.codes",
+  links: "https://app.7qr.codes/links",
+  settings: "https://app.7qr.codes/settings",
+  welcome: "https://app.7qr.codes/welcome",
   discord: "https://twitter.com/dubdotco", // placeholder for now
 };
 
 export const DUB_HEADERS = {
   headers: {
-    "x-powered-by": "Dub.co - Link management for modern marketing teams",
+    "x-powered-by": "7QR - Link management for modern marketing teams",
   },
 };

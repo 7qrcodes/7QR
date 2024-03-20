@@ -7,7 +7,7 @@ import { parse } from "node-html-parser";
 export const getHtml = async (url: string) => {
   return await fetchWithTimeout(url, {
     headers: {
-      "User-Agent": "Dub.co Bot",
+      "User-Agent": "7QR Bot",
     },
   })
     .then((r) => r.text())

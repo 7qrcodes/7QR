@@ -13,18 +13,18 @@ import { tagsPaths } from "./tags";
 export const openApiObject: ZodOpenApiObject = {
   openapi: "3.0.3",
   info: {
-    title: "Dub.co API",
+    title: "7QR API",
     description:
       "Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.",
     version: "0.0.1",
     contact: {
-      name: "Dub.co Support",
-      email: "support@dub.co",
-      url: "https://dub.co/api",
+      name: "7QR Support",
+      email: "contact@7qr.codes",
+      url: "https://7qr.codes/api",
     },
     license: {
       name: "AGPL-3.0 license",
-      url: "https://github.com/dubinc/dub/blob/main/LICENSE.md",
+      url: "https://github.com/7qrcodes/7QR/blob/main/LICENSE.md",
     },
   },
   servers: [

@@ -70,7 +70,7 @@ export function QRCodePicker({
     if (logo && plan !== "free") return logo;
     return typeof window !== "undefined" && window.location.origin
       ? new URL("/_static/logo.svg", window.location.origin).href
-      : "https://dub.co/_static/logo.svg";
+      : "https://7qr.codes/_static/logo.svg";
   }, [logo, plan]);
 
   function download(url: string, extension: string) {
@@ -194,7 +194,7 @@ export function QRCodePicker({
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `https://api.dub.co/qr?url=${linkConstructor({
+                    `https://api.7qr.codes/qr?url=${linkConstructor({
                       key: props.key,
                       domain: props.domain,
                     })}`,
@@ -235,7 +235,7 @@ export function QRCodePicker({
                       ...(qrData.imageSettings && {
                         imageSettings: {
                           ...qrData.imageSettings,
-                          src: logo || "https://dub.co/_static/logo.svg",
+                          src: logo || "https://7qr.codes/_static/logo.svg",
                         },
                       }),
                     }),

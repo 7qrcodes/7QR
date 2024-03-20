@@ -40,10 +40,10 @@ const navigation = {
 };
 
 export function Footer() {
-  const { domain = "dub.co" } = useParams() as { domain: string };
+  const { domain = "7qr.codes" } = useParams() as { domain: string };
 
   const createHref = (href: string) =>
-    domain === "dub.co" ? href : `https://dub.co${href}`;
+    domain === "7qr.codes" ? href : `https://7qr.codes${href}`;
 
   return (
     <footer>
@@ -52,7 +52,7 @@ export function Footer() {
           <div className="space-y-6">
             <Link
               href={createHref("/")}
-              {...(domain !== "dub.co" && {
+              {...(domain !== "7qr.codes" && {
                 onClick: () => {
                   va.track("Referred from custom domain", {
                     domain,
@@ -84,7 +84,7 @@ export function Footer() {
                 <Twitter className="h-4 w-4 text-gray-600" />
               </a>
               <a
-                href="https://github.com/dubinc/dub"
+                href="https://github.com/7qrcodes/7QR"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-gray-200 p-2 transition-colors hover:bg-gray-100"
@@ -124,7 +124,7 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.co" && {
+                        {...(domain !== "7qr.codes" && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -147,7 +147,7 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.co" && {
+                        {...(domain !== "7qr.codes" && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -175,7 +175,7 @@ export function Footer() {
                       <li key={item.name}>
                         <Link
                           href={createHref(item.href)}
-                          {...(domain !== "dub.co" && {
+                          {...(domain !== "7qr.codes" && {
                             onClick: () => {
                               va.track("Referred from custom domain", {
                                 domain,
@@ -198,7 +198,7 @@ export function Footer() {
                       <li key={item.name}>
                         <Link
                           href={createHref(item.href)}
-                          {...(domain !== "dub.co" && {
+                          {...(domain !== "7qr.codes" && {
                             onClick: () => {
                               va.track("Referred from custom domain", {
                                 domain,
@@ -223,7 +223,7 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.co" && {
+                        {...(domain !== "7qr.codes" && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -243,7 +243,7 @@ export function Footer() {
           </div>
         </div>
         <Image
-          src="https://assets.dub.co/footer.png"
+          src="https://assets.7qr.codes/footer.png"
           alt="Dub Technologies, Inc. Logo"
           width={1959}
           height={625}
@@ -263,7 +263,7 @@ function StatusBadge() {
         | "partial_outage"
         | "full_outage";
     }[];
-  }>("https://status.dub.co/api/v1/summary", fetcher);
+  }>("https://status.7qr.codes/api/v1/summary", fetcher);
 
   const [color, setColor] = useState("bg-gray-200");
   const [status, setStatus] = useState("Loading status...");
@@ -287,7 +287,7 @@ function StatusBadge() {
 
   return (
     <Link
-      href="https://status.dub.co"
+      href="https://status.7qr.codes"
       target="_blank"
       className="group flex max-w-fit items-center space-x-2 rounded-md border border-gray-200 bg-white px-3 py-2 transition-colors hover:bg-gray-100"
     >

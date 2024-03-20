@@ -110,7 +110,7 @@ export async function getLinksForProject({
       tagId: tags?.[0]?.id ?? null, // backwards compatibility
       tags,
       shortLink,
-      qrCode: `https://api.dub.co/qr?url=${shortLink}`,
+      qrCode: `https://api.7qr.codes/qr?url=${shortLink}`,
     };
   });
 }
@@ -571,7 +571,7 @@ export async function addLink(link: LinkWithTagIdsProps) {
     tagId: tags?.[0]?.id ?? null, // backwards compatibility
     tags,
     shortLink,
-    qrCode: `https://api.dub.co/qr?url=${shortLink}`,
+    qrCode: `https://api.7qr.codes/qr?url=${shortLink}`,
   };
 }
 
@@ -642,7 +642,7 @@ export async function bulkCreateLinks({
       shortLink,
       tagId: tags?.[0]?.id ?? null, // backwards compatibility
       tags,
-      qrCode: `https://api.dub.co/qr?url=${shortLink}`,
+      qrCode: `https://api.7qr.codes/qr?url=${shortLink}`,
     };
   });
 }
@@ -824,7 +824,7 @@ export async function editLink({
     tagId: tags?.[0]?.id ?? null, // backwards compatibility
     tags,
     shortLink,
-    qrCode: `https://api.dub.co/qr?url=${shortLink}`,
+    qrCode: `https://api.7qr.codes/qr?url=${shortLink}`,
   };
 }
 

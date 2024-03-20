@@ -1,34 +1,34 @@
 ---
 title: "Introduction"
-"og:title": "Dub.co API Reference - Introduction"
-description: "Fundamental concepts of Dub.co's API."
+"og:title": "7QR API Reference - Introduction"
+description: "Fundamental concepts of 7QR's API."
 ---
 
 <Info>
-  Dub.co's API is currently in beta. If you have any questions or feedback,
+  7QR's API is currently in beta. If you have any questions or feedback,
   please reach out to us at
-  [support@dub.co](mailto:support@dub.co?subject=Dub.co%20API%20Feedback).
+  [contact@7qr.codes](mailto:contact@7qr.codes?subject=7QR%20API%20Feedback).
 </Info>
 
 ## Base URL
 
-Dub.co's API is built on REST principles and is served over HTTPS. To ensure data privacy, unencrypted HTTP is not supported.
+7QR's API is built on REST principles and is served over HTTPS. To ensure data privacy, unencrypted HTTP is not supported.
 
 The Base URL for all API endpoints is:
 
 ```
-https://api.dub.co
+https://api.7qr.codes
 ```
 
 ## Authentication
 
-Authentication to Dub.co's API is performed via the Authorization header with a Bearer token. To authenticate, you need to include the Authorization header with the word `Bearer` followed by your token in your API requests like so:
+Authentication to 7QR's API is performed via the Authorization header with a Bearer token. To authenticate, you need to include the Authorization header with the word `Bearer` followed by your token in your API requests like so:
 
 ```
 Authorization: Bearer <Your-Token>
 ```
 
-You can get your token under your [Dub.co Account Settings](https://app.dub.co/settings/tokens).
+You can get your token under your [7QR Account Settings](https://app.7qr.codes/settings/tokens).
 
 ## Response Codes
 
@@ -47,4 +47,4 @@ The API returns standard HTTP response codes to indicate the success or failure 
 ## Caveats
 
 - Dub's API is currently in public beta and is subject to change. However, we will do our best to keep breaking changes to a minimum.
-- The API does not support generic shortlinks (`dub.sh`, `chatg.pt`) at this time – you can only use it with a [Dub.co project](https://dub.co/help/article/what-is-a-project) with a [custom domain](https://dub.co/help/article/how-to-add-custom-domain) for now.
+- The API does not support generic shortlinks (`dub.sh`, `chatg.pt`) at this time – you can only use it with a [7QR project](https://dub.co/help/article/what-is-a-project) with a [custom domain](https://dub.co/help/article/how-to-add-custom-domain) for now.

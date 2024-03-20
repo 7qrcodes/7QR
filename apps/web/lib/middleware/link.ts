@@ -56,7 +56,7 @@ export default async function LinkMiddleware(
 
     if (!linkData) {
       // short link not found, redirect to root
-      // TODO: log 404s (https://github.com/dubinc/dub/issues/559)
+      // TODO: log 404s (https://github.com/7qrcodes/7QR/issues/559)
       return NextResponse.redirect(new URL("/", req.url), {
         ...DUB_HEADERS,
         status: 302,

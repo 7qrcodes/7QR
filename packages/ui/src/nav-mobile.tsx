@@ -10,7 +10,7 @@ import { FEATURES_LIST } from "./content";
 import { navItems } from "./nav";
 
 export function NavMobile() {
-  const { domain = "dub.co" } = useParams() as { domain: string };
+  const { domain = "7qr.codes" } = useParams() as { domain: string };
   const [open, setOpen] = useState(false);
   const [openFeatures, setOpenFeatures] = useState(false);
   // prevent body scroll when modal is open
@@ -23,7 +23,7 @@ export function NavMobile() {
   }, [open]);
 
   const { data: session } = useSWR(
-    domain === "dub.co" && "/api/auth/session",
+    domain === "7qr.codes" && "/api/auth/session",
     fetcher,
     {
       dedupingInterval: 60000,
@@ -71,9 +71,9 @@ export function NavMobile() {
                   <Link
                     key={slug}
                     href={
-                      domain === "dub.co"
+                      domain === "7qr.codes"
                         ? `/${slug}`
-                        : `https://dub.co/${slug}`
+                        : `https://7qr.codes/${slug}`
                     }
                     onClick={() => setOpen(false)}
                     className="flex w-full space-x-2"
@@ -89,7 +89,7 @@ export function NavMobile() {
             <li key={slug} className="py-3">
               <Link
                 href={
-                  domain === "dub.co" ? `/${slug}` : `https://dub.co/${slug}`
+                  domain === "7qr.codes" ? `/${slug}` : `https://7qr.codes/${slug}`
                 }
                 onClick={() => setOpen(false)}
                 className="flex w-full font-semibold capitalize"

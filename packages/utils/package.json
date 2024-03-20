@@ -1,6 +1,6 @@
 {
   "name": "@dub/utils",
-  "description": "Utility functions and constants for Dub.co",
+  "description": "Utility functions and constants for 7QR",
   "version": "0.0.38",
   "sideEffects": false,
   "main": "./dist/index.mjs",

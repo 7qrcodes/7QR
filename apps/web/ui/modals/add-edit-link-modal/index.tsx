@@ -404,7 +404,7 @@ function AddEditLinkModal({
                     placeholder={
                       domains?.find(({ slug }) => slug === domain)
                         ?.placeholder ||
-                      "https://dub.co/help/article/what-is-dub"
+                      "https://super-long-link.com"
                     }
                     value={url}
                     autoFocus={!key && !isMobile}

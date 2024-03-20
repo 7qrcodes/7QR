@@ -1,4 +1,4 @@
-# Dub.co Tinybird Setup
+# 7QR Tinybird Setup
 
 ```bash
 ├── datasources

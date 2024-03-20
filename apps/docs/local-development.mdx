@@ -1,16 +1,16 @@
 ---
 title: "Local Development"
-"og:title": "How to setup Dub.co for Local Development (6 steps)"
-description: "A guide on how to run Dub.co's codebase locally."
+"og:title": "How to setup 7QR for Local Development (6 steps)"
+description: "A guide on how to run 7QR's codebase locally."
 ---
 
 <Frame>
-  <img src="/images/thumbnail.png" alt="Dub.co Thumbnail" />
+  <img src="/images/thumbnail.png" alt="7QR Thumbnail" />
 </Frame>
 
 ## Introduction
 
-Dub's codebase is set up in a monorepo (via [Turborepo](https://turbo.build/repo)) and is fully [open-source on GitHub](https://github.com/dubinc/dub).
+Dub's codebase is set up in a monorepo (via [Turborepo](https://turbo.build/repo)) and is fully [open-source on GitHub](https://github.com/7qrcodes/7QR).
 
 Here's the monorepo structure:
 
@@ -28,8 +28,8 @@ packages
 
 The `apps` directory contains the code for:
 
-- `web`: The entirety of Dub's application ([app.dub.co](https://app.dub.co)) + our link redirect infrastructure.
-- `docs`: Dub's documentation site ([dub.co/docs](https://dub.co/docs)) – including this page you're on right now!
+- `web`: The entirety of Dub's application ([app.7qr.codes](https://app.7qr.codes)) + our link redirect infrastructure.
+- `docs`: Dub's documentation site ([7qr.codes/docs](https://7qr.codes/docs)) – including this page you're on right now!
 
 The `packages` directory contains the code for:
 
@@ -39,15 +39,15 @@ The `packages` directory contains the code for:
 - `ui`: Dub's UI component library.
 - `utils`: A collection of utility functions and constants used across Dub's codebase.
 
-## How `app.dub.co` works
+## How `app.7qr.codes` works
 
 Dub's web app is built with [Next.js](https://nextjs.org) and [TailwindCSS](https://tailwindcss.com).
 
 It also utilizes code from the `packages` directory, specifically the `@dub/ui` and `@dub/utils` packages.
 
-All of the code for the web app is located in here: [`main`/apps/web/app/app.dub.co](https://github.com/dubinc/dub/tree/main/apps/web/app/app.dub.co). This is using the Next.js [route group pattern](https://nextjs.org/docs/app/building-your-application/routing/route-groups).
+All of the code for the web app is located in here: [`main`/apps/web/app/app.7qr.codes](https://github.com/7qrcodes/7QR/tree/main/apps/web/app/app.7qr.codes). This is using the Next.js [route group pattern](https://nextjs.org/docs/app/building-your-application/routing/route-groups).
 
-There's also the API server, which is located in here: [`main`/apps/web/app/api](https://github.com/dubinc/dub/tree/main/apps/web/app/api)
+There's also the API server, which is located in here: [`main`/apps/web/app/api](https://github.com/7qrcodes/7QR/tree/main/apps/web/app/api)
 
 When you run `pnpm dev` to start the development server, the app will be available at [http://localhost:8888](http://localhost:8888). The reason we use `localhost:8888` and not `app.localhost:8888` is because Google OAuth doesn't allow you to use localhost subdomains.
 
@@ -59,12 +59,12 @@ To handle high traffic, we use Redis to cache every link's metadata when it's fi
 
 Here's the code that powers link redirects:
 
-- Link redirects: [`main`/apps/web/lib/middleware/link.ts](https://github.com/dubinc/dub/blob/main/apps/web/lib/middleware/link.ts).
-- Root domain redirects: [`main`/apps/web/lib/middleware/root.ts](https://github.com/dubinc/dub/blob/main/apps/web/lib/middleware/root.ts).
+- Link redirects: [`main`/apps/web/lib/middleware/link.ts](https://github.com/7qrcodes/7QR/blob/main/apps/web/lib/middleware/link.ts).
+- Root domain redirects: [`main`/apps/web/lib/middleware/root.ts](https://github.com/7qrcodes/7QR/blob/main/apps/web/lib/middleware/root.ts).
 
 ## Running Dub locally
 
-To run Dub.co locally, you'll need to set up the following:
+To run 7QR locally, you'll need to set up the following:
 
 - A [Tinybird](https://www.tinybird.co/) account
 - An [Upstash](https://upstash.com/) account
@@ -72,16 +72,16 @@ To run Dub.co locally, you'll need to set up the following:
 
 ## Step 1: Local setup
 
-First, you'll need to clone the Dub.co repo and install the dependencies.
+First, you'll need to clone the 7QR repo and install the dependencies.
 
 <Steps>
 
   <Step title="Clone the repo">
 
-First, clone the [Dub.co repo](https://d.to/github) into a public GitHub repository.
+First, clone the [7QR repo](https://d.to/github) into a public GitHub repository.
 
     ```bash Terminal
-    git clone https://github.com/dubinc/dub.git
+    git clone https://github.com/7qrcodes/7QR.git
     ```
 
   </Step>
@@ -98,7 +98,7 @@ First, clone the [Dub.co repo](https://d.to/github) into a public GitHub reposit
 
   <Step title="Optional: Install Mintlify">
 
-    If you're planning to make changes to [Dub.co's Docs](/docs), you'll need to install the [Mintlify CLI](https://mintlify.com/docs/development) to build the documentation site.
+    If you're planning to make changes to [7QR's Docs](/docs), you'll need to install the [Mintlify CLI](https://mintlify.com/docs/development) to build the documentation site.
 
     ```bash Terminal
     pnpm install -g mintlify
@@ -124,7 +124,7 @@ Next, you'll need to set up the [Tinybird](https://tinybird.co) Clickhouse datab
 
   <Step title="Install Tinybird CLI and authenticate">
 
-In your newly-cloned Dub.co repo, navigate to the `packages/tinybird` directory.
+In your newly-cloned 7QR repo, navigate to the `packages/tinybird` directory.
 
     Install the Tinybird CLI with `pip install tinybird-cli` (requires Python >= 3.8).
 
@@ -335,7 +335,7 @@ Prerequisites:
 
 ## Step 5: Set up GitHub OAuth
 
-Next, follow [these steps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps) to create a GitHub App. This will allow you to sign in to Dub.co with your GitHub account.
+Next, follow [these steps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps) to create a GitHub App. This will allow you to sign in to 7QR with your GitHub account.
 
 Don't forget to set the following Callback URL:
 

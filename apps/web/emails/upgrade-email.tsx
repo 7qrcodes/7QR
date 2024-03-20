@@ -27,7 +27,7 @@ export default function UpgradeEmail({
   return (
     <Html>
       <Head />
-      <Preview>Thank you for upgrading to Dub.co {plan}!</Preview>
+      <Preview>Thank you for upgrading to 7QR {plan}!</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 max-w-[500px] rounded border border-solid border-gray-200 px-10 py-5">
@@ -41,7 +41,7 @@ export default function UpgradeEmail({
               />
             </Section>
             <Heading className="mx-0 my-7 p-0 text-center text-xl font-semibold text-black">
-              Thank you for upgrading to Dub.co {plan}!
+              Thank you for upgrading to 7QR {plan}!
             </Heading>
             <Section className="my-8">
               <Img
@@ -60,7 +60,7 @@ export default function UpgradeEmail({
                 href={planDetails.link}
                 className="font-medium text-blue-600 no-underline"
               >
-                Dub.co {plan}
+                7QR {plan}
               </Link>
               !
             </Text>
@@ -80,7 +80,7 @@ export default function UpgradeEmail({
                 open-source
               </Link>{" "}
               business. Your support means the world to us and helps us continue
-              to build and improve Dub.co.
+              to build and improve 7QR.
             </Text>
             <Text className="text-sm leading-6 text-black">
               On the {plan} plan, you now have access to:

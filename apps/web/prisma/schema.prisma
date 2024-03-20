@@ -193,13 +193,13 @@ model Link {
   id        String    @id @default(cuid())
   domain    String // domain of the link (e.g. dub.sh) – also stored on Redis
   key       String // key of the link (e.g. /github) – also stored on Redis
-  url       String    @db.LongText // target url (e.g. https://github.com/dubinc/dub) – also stored on Redis
+  url       String    @db.LongText // target url (e.g. https://github.com/7qrcodes/7QR) – also stored on Redis
   archived  Boolean   @default(false) // whether the link is archived or not
   expiresAt DateTime? // when the link expires – stored on Redis via ttl
   password  String? // password to access the link
 
   proxy       Boolean @default(false) // Proxy to use custom OG tags (stored on redis) – if false, will use OG tags from target url
-  title       String? // OG title for the link (e.g. Dub.co - Open-Source Link Management Infrastructure)
+  title       String? // OG title for the link (e.g. 7QR - Open-Source Link Management Infrastructure)
   description String? @db.VarChar(280) // OG description for the link (e.g. An open-source link management tool for modern marketing teams to create, share, and track short links.)
   image       String? @db.LongText // OG image for the link (e.g. https://d.to/og)
 

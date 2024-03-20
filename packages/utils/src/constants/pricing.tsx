@@ -43,7 +43,7 @@ const BUSINESS_PLAN_MODIFIER = ({
   cta: {
     text: "Get started with Business",
     shortText: "Get started",
-    href: "https://app.dub.co/register",
+    href: "https://app.7qr.codes/register",
     color: "bg-sky-900 border-sky-900 hover:text-sky-900",
   },
   featureTitle: "Everything in Pro, plus:",
@@ -97,7 +97,7 @@ export const PLANS = [
     },
     cta: {
       text: "Start for free",
-      href: "https://app.dub.co/register",
+      href: "https://app.7qr.codes/register",
       color: "bg-black border-black hover:text-black",
     },
     featureTitle: "What's included:",
@@ -153,7 +153,7 @@ export const PLANS = [
     cta: {
       text: "Get started with Pro",
       shortText: "Get started",
-      href: "https://app.dub.co/register",
+      href: "https://app.7qr.codes/register",
       color: "bg-blue-500 border-blue-500 hover:text-blue-500",
     },
     featureTitle: "Everything in Free, plus:",
@@ -251,7 +251,7 @@ export const PLANS = [
     name: "Enterprise",
     tagline:
       "Custom tailored plans for large enterprises. Whether you're running a SMS campaign with millions of short links or a large marketing campaign with billions of clicks, we've got you covered.",
-    link: "https://dub.co/enterprise",
+    link: "https://7qr.codes/enterprise",
     price: {
       monthly: null,
       yearly: null,

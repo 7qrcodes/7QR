@@ -24,7 +24,7 @@ export default function WelcomeEmail({
   return (
     <Html>
       <Head />
-      <Preview>Welcome to Dub.co</Preview>
+      <Preview>Welcome to 7QR</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 max-w-[500px] rounded border border-solid border-gray-200 px-10 py-5">
@@ -38,7 +38,7 @@ export default function WelcomeEmail({
               />
             </Section>
             <Heading className="mx-0 my-7 p-0 text-center text-xl font-semibold text-black">
-              Welcome to Dub.co
+              Welcome to 7QR
             </Heading>
             <Section className="my-8">
               <Img src={DUB_THUMBNAIL} alt="Dub" className="max-w-[500px]" />
@@ -47,7 +47,7 @@ export default function WelcomeEmail({
               Thanks for signing up{name && `, ${name}`}!
             </Text>
             <Text className="text-sm leading-6 text-black">
-              My name is Steven, and I'm the founder of Dub.co - the modern link
+              My name is Steven, and I'm the founder of 7QR - the modern link
               management platform for you to create marketing campaigns, link
               sharing features, and referral programs. We're excited to have you
               on board!
@@ -58,7 +58,7 @@ export default function WelcomeEmail({
             <Text className="ml-1 text-sm leading-4 text-black">
               ◆ Create a{" "}
               <Link
-                href="https://app.dub.co"
+                href="https://app.7qr.codes"
                 className="font-medium text-blue-600 no-underline"
               >
                 new project
@@ -83,7 +83,7 @@ export default function WelcomeEmail({
             <Text className="ml-1 text-sm leading-4 text-black">
               ◆ Check out our{" "}
               <Link
-                href="https://dub.co/api"
+                href="https://7qr.codes/api"
                 className="font-medium text-blue-600 no-underline"
               >
                 API documentation

@@ -9,7 +9,7 @@ export * from "./misc";
 export * from "./pricing";
 export * from "./saml";
 
-export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Dub.co";
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "7QR";
 
 export const SHORT_DOMAIN =
   process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN || "7qr.sh";
@@ -56,8 +56,8 @@ export const ADMIN_HOSTNAMES = new Set([
   "admin.localhost:8888",
 ]);
 
-export const DUB_LOGO = "https://assets.dub.co/logo.png";
-export const DUB_THUMBNAIL = "https://assets.dub.co/thumbnail.png";
+export const DUB_LOGO = "https://assets.7qr.codes/logo.png";
+export const DUB_THUMBNAIL = "https://assets.7qr.codes/thumbnail.png";
 
 export const DUB_PROJECT_ID = "cl7pj5kq4006835rbjlt2ofka";
 export const LEGAL_PROJECT_ID = "clrflia0j0000vs7sqfhz9c7q";
@@ -73,7 +73,7 @@ export const DUB_DOMAINS = [
     publicStats: false,
     target: `https://${process.env.NEXT_PUBLIC_APP_DOMAIN}`,
     type: "redirect",
-    placeholder: "https://dub.co/help/article/what-is-dub",
+    placeholder: "https://super-long-link.com",
     clicks: 0,
     allowedHostnames: [],
     projectId: DUB_PROJECT_ID,
@@ -117,7 +117,7 @@ export const DUB_DOMAINS = [
           publicStats: false,
           target: "https://dub.co/tools/github-link-shortener",
           type: "redirect",
-          placeholder: "https://github.com/dubinc/dub",
+          placeholder: "https://github.com/7qrcodes/7QR",
           clicks: 0,
           allowedHostnames: ["github.com", "gist.github.com"],
           projectId: DUB_PROJECT_ID,

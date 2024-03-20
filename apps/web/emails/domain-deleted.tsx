@@ -44,9 +44,9 @@ export default function DomainDeleted({
             </Heading>
             <Text className="text-sm leading-6 text-black">
               Your domain <code className="text-purple-600">{domain}</code> for
-              your Dub.co project{" "}
+              your 7QR project{" "}
               <Link
-                href={`https://app.dub.co/${projectSlug}`}
+                href={`https://app.7qr.codes/${projectSlug}`}
                 className="font-medium text-blue-600 no-underline"
               >
                 {projectSlug}↗
@@ -56,18 +56,18 @@ export default function DomainDeleted({
             </Text>
             <Text className="text-sm leading-6 text-black">
               If you would like to restore the domain, you can easily create it
-              again on Dub.co with the link below.
+              again on 7QR with the link below.
             </Text>
             <Section className="my-8 text-center">
               <Link
                 className="rounded-full bg-black px-6 py-3 text-center text-[12px] font-semibold text-white no-underline"
-                href={`https://app.dub.co/${projectSlug}/domains`}
+                href={`https://app.7qr.codes/${projectSlug}/domains`}
               >
                 Add a domain
               </Link>
             </Section>
             <Text className="text-sm leading-6 text-black">
-              If you did not want to keep using this domain on Dub.co anyway,
+              If you did not want to keep using this domain on 7QR anyway,
               you can simply ignore this email.
             </Text>
             <Footer email={email} />
