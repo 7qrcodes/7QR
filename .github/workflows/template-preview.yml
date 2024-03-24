@@ -1,0 +1,62 @@
+name: Preview template
+
+on:
+  workflow_call:
+    inputs:
+      vercel_org_id:
+        required: true
+        type: string
+      vercel_project_id:
+        required: true
+        type: string
+      project_name:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+      should_deploy:
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      VERCEL_TOKEN:
+        required: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    name: Preview ${{ inputs.project_name }}
+    env:
+      VERCEL_ORG_ID: ${{ inputs.vercel_org_id }}
+      VERCEL_PROJECT_ID: ${{ inputs.vercel_project_id }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
+            - args: [--global, vercel, prettier, typescript]
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Pull Vercel Environment Information (local)
+        run: vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Pull Vercel Environment Information (.env)
+        run: vercel env pull .env --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build package dependencies
+        run: pnpm build:packages
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        if: ${{ inputs.should_deploy }}
+        run: vercel deploy --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }}
