@@ -1,93 +1,50 @@
 "use client";
 
 import { InlineSnippet } from "@dub/ui";
-import { STAGGER_CHILD_VARIANTS } from "@dub/utils";
-import Spline from "@splinetool/react-spline";
 import va from "@vercel/analytics";
-import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
-import { useState } from "react";
-import { useDebounce } from "use-debounce";
 
 export default function PlaceholderContent() {
   const { domain } = useParams() as { domain: string };
-  const [loading, setLoading] = useState(true);
-  const onLoad = () => {
-    setLoading(false);
-  };
-  // workarouond to avoid the blinking effect when Spline loads
-  const [opacity] = useDebounce(loading ? 0 : 1, 200);
-
-  const [showText] = useDebounce(loading ? false : true, 800);
 
   return (
-    <motion.div
-      className="z-10 mb-20"
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.5, type: "spring" }}
-    >
-      <div
-        className={`${
-          loading ? "scale-[25%] blur-md" : "scale-100 blur-0"
-        } mt-[7vh] h-[50vh] w-screen object-cover transition-all duration-1000`}
-      >
-        <Spline
-          onLoad={onLoad}
-          style={{ opacity: opacity }}
-          scene="https://prod.spline.design/cJkq6hsiUPNRHeMf/scene.splinecode"
-        />
+      <div className="flex flex-col justify-center">
+        <div className="mx-auto flex max-w-xs flex-col space-y-10 sm:max-w-lg">
+          <h1 className="font-display text-2xl font-bold">
+            Hey there, this is a Custom Domain from 7QR
+          </h1>
+          <p className="text-sm">
+            The link you clicked may not be working. Please make sure the link
+            you clicked on or typed contains letters or numbers after the
+            forward-slash (“/”).
+          </p>
+          <p className="text-sm">
+            <InlineSnippet>{domain}</InlineSnippet> is a custom domain on{" "}
+            <a
+              className="bg-clip-text font-semibold hover:underline"
+              href="https://7qr.codes"
+              onClick={() =>
+                va.track("Referred from custom domain", {
+                  domain,
+                  medium: "text",
+                })
+              }
+            >
+              7QR
+            </a>{" "}
+            - a great platform to boost your businesses with QR Codes.
+          </p>
+          <p className="text-sm">
+            Want to create your own QR Codes with 7QR?{" "}
+            <a
+              href="https://7qr.codes"
+              className="text-pink-medium font-medium hover:underline"
+            >
+              Click here
+            </a>{" "}
+            to discover how it can help you grow!
+          </p>
+        </div>
       </div>
-      <motion.div
-        variants={{
-          show: {
-            transition: {
-              staggerChildren: 0.3,
-            },
-          },
-        }}
-        initial="hidden"
-        animate={showText ? "show" : "hidden"}
-        className="mx-5 flex flex-col items-center space-y-10 text-center sm:mx-auto"
-      >
-        <motion.h1
-          className="font-display text-4xl font-bold text-gray-800 transition-colors sm:text-5xl"
-          variants={STAGGER_CHILD_VARIANTS}
-        >
-          Welcome to {process.env.NEXT_PUBLIC_APP_NAME}
-        </motion.h1>
-        <motion.p
-          className="max-w-xl text-gray-600 transition-colors sm:text-lg"
-          variants={STAGGER_CHILD_VARIANTS}
-        >
-          <InlineSnippet>{domain}</InlineSnippet> is a custom domain on{" "}
-          <a
-            className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-semibold text-transparent decoration-rose-600 hover:underline"
-            href="https://dub.co"
-            onClick={() =>
-              va.track("Referred from custom domain", {
-                domain,
-                medium: "text",
-              })
-            }
-          >
-            {process.env.NEXT_PUBLIC_APP_NAME}
-          </a>{" "}
-          - the link management infrastructure for modern marketing teams.
-        </motion.p>
-        <motion.a
-          variants={STAGGER_CHILD_VARIANTS}
-          href="https://dub.co"
-          onClick={() =>
-            va.track("Referred from custom domain", {
-              domain,
-              medium: "button",
-            })
-          }
-          className="rounded-full bg-gray-800 px-10 py-2 font-medium text-white transition-colors hover:bg-black"
-        >
-          Create Your Free Branded Link
-        </motion.a>
-      </motion.div>
-    </motion.div>
   );
 }
