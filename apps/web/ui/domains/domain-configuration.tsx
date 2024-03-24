@@ -69,7 +69,7 @@ export default function DomainConfiguration({
             {
               type: recordType,
               name: recordType === "A" ? "@" : subdomain ?? "www",
-              value: recordType === "A" ? `76.76.21.21` : `cname.dub.co`,
+              value: recordType === "A" ? `76.76.21.21` : `cname.7qr.codes`,
               ttl: "86400",
             },
           ]}
@@ -122,7 +122,7 @@ export default function DomainConfiguration({
           {
             type: recordType,
             name: recordType === "A" ? "@" : subdomain ?? "www",
-            value: recordType === "A" ? `76.76.21.21` : `cname.dub.co`,
+            value: recordType === "A" ? `76.76.21.21` : `cname.7qr.codes`,
             ttl: "86400",
           },
         ]}

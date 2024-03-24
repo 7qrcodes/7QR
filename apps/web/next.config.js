@@ -39,10 +39,10 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        hostname: "assets.dub.co", // for Dub's static assets
+        hostname: "assets.7qr.codes", // for Dub's static assets
       },
       {
-        hostname: "dubassets.com", // for Dub's user generated images
+        hostname: "storage.7qr.codes", // for Dub's user generated images
       },
       {
         hostname: "www.google.com",
@@ -91,120 +91,5 @@ module.exports = {
       },
     ];
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "app.dub.sh",
-          },
-        ],
-        destination: "https://app.dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "app.dub.sh",
-          },
-        ],
-        destination: "https://app.dub.co/:path*",
-        permanent: true,
-        statusCode: 301,
-      },
-      ...REDIRECT_SEGMENTS.map(
-        (segment) => (
-          {
-            source: `/${segment}`,
-            has: [
-              {
-                type: "host",
-                value: "dub.sh",
-              },
-            ],
-            destination: `https://dub.co/${segment}`,
-            permanent: true,
-            statusCode: 301,
-          },
-          {
-            source: `/${segment}/:path*`,
-            has: [
-              {
-                type: "host",
-                value: "dub.sh",
-              },
-            ],
-            destination: `https://dub.co/${segment}/:path*`,
-            permanent: true,
-            statusCode: 301,
-          }
-        ),
-      ),
-      {
-        source: "/metatags",
-        has: [
-          {
-            type: "host",
-            value: "dub.sh",
-          },
-        ],
-        destination: "https://dub.co/tools/metatags",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/metatags",
-        has: [
-          {
-            type: "host",
-            value: "dub.co",
-          },
-        ],
-        destination: "/tools/metatags",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "staging.dub.sh",
-          },
-        ],
-        destination: "https://dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "preview.dub.sh",
-          },
-        ],
-        destination: "https://preview.dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "admin.dub.sh",
-          },
-        ],
-        destination: "https://admin.dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-    ];
-  },
+
 };

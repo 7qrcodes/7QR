@@ -4,6 +4,7 @@
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "build": "turbo build",
+    "build:packages": "turbo build --filter='./packages/*'",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "clean": "turbo clean",

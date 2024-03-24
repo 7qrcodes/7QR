@@ -1,5 +1,5 @@
 export function linkConstructor({
-  domain = "dub.sh",
+  domain = process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN as string,
   key,
   localhost,
   pretty,

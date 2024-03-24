@@ -27,12 +27,7 @@ export const sendEmail = async ({
   }
 
   return client.sendEmail({
-    From:
-      from || marketing
-        ? "steven@ship.dub.co"
-        : process.env.NEXT_PUBLIC_IS_DUB
-          ? "system@dub.co"
-          : `${process.env.NEXT_PUBLIC_APP_NAME} <system@${process.env.NEXT_PUBLIC_APP_DOMAIN}>`,
+    From: "contact@7qr.codes",
     To: email,
     Subject: subject,
     ...(text && { TextBody: text }),

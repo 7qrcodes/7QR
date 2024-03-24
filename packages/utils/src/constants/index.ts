@@ -12,7 +12,7 @@ export * from "./saml";
 export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Dub.co";
 
 export const SHORT_DOMAIN =
-  process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN || "dub.sh";
+  process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN || "7qr.sh";
 
 export const HOME_DOMAIN = `https://${process.env.NEXT_PUBLIC_APP_DOMAIN}`;
 
@@ -56,8 +56,8 @@ export const ADMIN_HOSTNAMES = new Set([
   "admin.localhost:8888",
 ]);
 
-export const DUB_LOGO = "https://assets.dub.co/logo.png";
-export const DUB_THUMBNAIL = "https://assets.dub.co/thumbnail.jpg";
+export const DUB_LOGO = "https://assets.7qr.codes/logo.png";
+export const DUB_THUMBNAIL = "https://assets.7qr.codes/thumbnail.png";
 
 export const DUB_WORKSPACE_ID = "cl7pj5kq4006835rbjlt2ofka";
 export const LEGAL_WORKSPACE_ID = "clrflia0j0000vs7sqfhz9c7q";

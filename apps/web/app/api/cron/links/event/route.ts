@@ -42,7 +42,7 @@ export async function POST(req: Request) {
   }
 
   // if the link is a dub.sh link (and is not a transfer event), do some checks
-  if (link.domain === "dub.sh" && type !== "transfer") {
+  if (link.domain === process.env.NEXT_PUBLIC_APP_SHORT_DOMAIN && type !== "transfer") {
     const invalidFavicon = await fetch(
       `${GOOGLE_FAVICON_URL}${getApexDomain(link.url)}`,
     ).then((res) => !res.ok);
