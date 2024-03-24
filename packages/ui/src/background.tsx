@@ -30,7 +30,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   backgroundMainAfter: {
     content: '""',
-    backgroundImage: "url(https://assets.dub.co/misc/grid.svg)",
     zIndex: 1,
     position: "absolute",
     width: "100%",
