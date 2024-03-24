@@ -42,7 +42,7 @@ module.exports = {
         hostname: "assets.7qr.codes", // for Dub's static assets
       },
       {
-        hostname: "storage.7qr.codes", // for Dub's user generated images
+        hostname: "pub-1865f12de1ba4e87a9c8999bd47adebc.r2.dev"
       },
       {
         hostname: "www.google.com",
