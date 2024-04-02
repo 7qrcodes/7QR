@@ -39,6 +39,5 @@ export * from "./counting-numbers";
 export * from "./icon-menu";
 export * from "./inline-snippet";
 export * from "./link-preview";
-export * from "./product-hunt";
 export * from "./progress-bar";
 export * from "./tab-select";
