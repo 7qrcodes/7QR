@@ -8,19 +8,59 @@ import {
 } from "@dub/utils";
 import { Link as LinkProps } from "@prisma/client";
 import { createHash } from "crypto";
+import { DefaultJWT, decode } from "next-auth/jwt";
 import { getServerSession } from "next-auth/next";
 import { exceededLimitError } from "../api/errors";
 import { PlanProps, WorkspaceProps } from "../types";
 import { ratelimit } from "../upstash";
 import { authOptions } from "./options";
 
+export interface UserJWT {
+  email: string;
+  id: string;
+  name: string;
+  image?: string;
+}
+
 export interface Session {
-  user: {
-    email: string;
-    id: string;
-    name: string;
-    image?: string;
-  };
+  user: UserJWT;
+}
+
+export interface CustomJWT extends DefaultJWT {
+  user?: UserJWT;
+}
+
+export type CallbackResponse = { error: Response } | { user: UserJWT };
+
+export type AuthorizeResponse =
+  | {
+      headers: {};
+      error: Response;
+      user: null;
+    }
+  | {
+      headers: {};
+      error: null;
+      user: UserJWT;
+    };
+
+function decodeJWT(token: string): Promise<UserJWT> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const result: CustomJWT | null = await decode({
+        token,
+        secret: process.env.NEXTAUTH_SECRET as string,
+      });
+
+      if (!result?.user) {
+        return reject("decode invalid");
+      }
+
+      resolve(result.user);
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
 
 export const getSession = async () => {
@@ -97,7 +137,7 @@ export const withAuth = (
     const searchParams = getSearchParams(req.url);
     const { linkId } = params || {};
 
-    let apiKey: string | undefined = undefined;
+    let token: string | undefined = undefined;
 
     const authorizationHeader = req.headers.get("Authorization");
     if (authorizationHeader) {
@@ -109,7 +149,7 @@ export const withAuth = (
           },
         );
       }
-      apiKey = authorizationHeader.replace("Bearer ", "");
+      token = authorizationHeader.replace("Bearer ", "");
     }
 
     const domain = params?.domain || searchParams.domain;
@@ -130,7 +170,7 @@ export const withAuth = (
       // if there's no workspace ID or slug
       if (!idOrSlug) {
         // for /api/links (POST /api/links) – allow no session (but warn if user provides apiKey)
-        if (allowAnonymous && !apiKey) {
+        if (allowAnonymous && !token) {
           // @ts-expect-error
           return await handler({
             req,
@@ -153,65 +193,96 @@ export const withAuth = (
         slug = idOrSlug;
       }
 
-      if (apiKey) {
-        const hashedKey = hashToken(apiKey, {
-          noSecret: true,
-        });
-
-        const user = await prisma.user.findFirst({
-          where: {
-            tokens: {
-              some: {
-                hashedKey,
+      if (token) {
+        try {
+          const decodedUser = await decodeJWT(token);
+          const user = await prisma.user.findFirst({
+            where: {
+              id: {
+                equals: decodedUser.id,
               },
             },
-          },
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        });
-        if (!user) {
-          throw new DubApiError({
-            code: "unauthorized",
-            message: "Unauthorized: Invalid API key.",
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
           });
-        }
+          if (!user) {
+            throw new DubApiError({
+              code: "unauthorized",
+              message: "Unauthorized: Invalid Token.",
+            });
+          }
+          session = {
+            user: {
+              id: user.id,
+              name: user.name || "",
+              email: user.email || "",
+            },
+          };
+        } catch (e) {
+          const apiKey = token;
 
-        const { success, limit, reset, remaining } = await ratelimit(
-          10,
-          "1 s",
-        ).limit(apiKey);
-
-        headers = {
-          "Retry-After": reset.toString(),
-          "X-RateLimit-Limit": limit.toString(),
-          "X-RateLimit-Remaining": remaining.toString(),
-          "X-RateLimit-Reset": reset.toString(),
-        };
-
-        if (!success) {
-          throw new DubApiError({
-            code: "rate_limit_exceeded",
-            message: "Too many requests.",
+          const hashedKey = hashToken(apiKey, {
+            noSecret: true,
           });
+
+          const user = await prisma.user.findFirst({
+            where: {
+              tokens: {
+                some: {
+                  hashedKey,
+                },
+              },
+            },
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          });
+          if (!user) {
+            throw new DubApiError({
+              code: "unauthorized",
+              message: "Unauthorized: Invalid API key.",
+            });
+          }
+
+          const { success, limit, reset, remaining } = await ratelimit(
+            10,
+            "1 s",
+          ).limit(apiKey);
+
+          headers = {
+            "Retry-After": reset.toString(),
+            "X-RateLimit-Limit": limit.toString(),
+            "X-RateLimit-Remaining": remaining.toString(),
+            "X-RateLimit-Reset": reset.toString(),
+          };
+
+          if (!success) {
+            throw new DubApiError({
+              code: "rate_limit_exceeded",
+              message: "Too many requests.",
+            });
+          }
+          await prisma.token.update({
+            where: {
+              hashedKey,
+            },
+            data: {
+              lastUsed: new Date(),
+            },
+          });
+          session = {
+            user: {
+              id: user.id,
+              name: user.name || "",
+              email: user.email || "",
+            },
+          };
         }
-        await prisma.token.update({
-          where: {
-            hashedKey,
-          },
-          data: {
-            lastUsed: new Date(),
-          },
-        });
-        session = {
-          user: {
-            id: user.id,
-            name: user.name || "",
-            email: user.email || "",
-          },
-        };
       } else {
         session = await getSession();
         if (!session?.user?.id) {
@@ -387,7 +458,7 @@ export const withAuth = (
       const url = new URL(req.url || "", API_DOMAIN);
       if (
         workspace.plan === "free" &&
-        apiKey &&
+        token &&
         url.pathname.includes("/analytics")
       ) {
         throw new DubApiError({
@@ -471,66 +542,96 @@ export const withSession =
               "Misconfigured authorization header. Did you forget to add 'Bearer '? Learn more: https://d.to/auth",
           });
         }
-        const apiKey = authorizationHeader.replace("Bearer ", "");
+        const token = authorizationHeader.replace("Bearer ", "");
 
-        const hashedKey = hashToken(apiKey, {
-          noSecret: true,
-        });
-
-        const user = await prisma.user.findFirst({
-          where: {
-            tokens: {
-              some: {
-                hashedKey,
+        try {
+          const decodedUser = await decodeJWT(token);
+          const user = await prisma.user.findFirst({
+            where: {
+              id: {
+                equals: decodedUser.id,
               },
             },
-          },
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        });
-        if (!user) {
-          throw new DubApiError({
-            code: "unauthorized",
-            message: "Unauthorized: Invalid API key.",
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
           });
-        }
-
-        const { success, limit, reset, remaining } = await ratelimit(
-          10,
-          "1 s",
-        ).limit(apiKey);
-
-        headers = {
-          "Retry-After": reset.toString(),
-          "X-RateLimit-Limit": limit.toString(),
-          "X-RateLimit-Remaining": remaining.toString(),
-          "X-RateLimit-Reset": reset.toString(),
-        };
-
-        if (!success) {
-          return new Response("Too many requests.", {
-            status: 429,
-            headers,
+          if (!user) {
+            throw new DubApiError({
+              code: "unauthorized",
+              message: "Unauthorized: Invalid Token.",
+            });
+          }
+          session = {
+            user: {
+              id: user.id,
+              name: user.name || "",
+              email: user.email || "",
+            },
+          };
+        } catch (e) {
+          const apiKey = token;
+          const hashedKey = hashToken(apiKey, {
+            noSecret: true,
           });
+
+          const user = await prisma.user.findFirst({
+            where: {
+              tokens: {
+                some: {
+                  hashedKey,
+                },
+              },
+            },
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          });
+          if (!user) {
+            throw new DubApiError({
+              code: "unauthorized",
+              message: "Unauthorized: Invalid API key.",
+            });
+          }
+
+          const { success, limit, reset, remaining } = await ratelimit(
+            10,
+            "1 s",
+          ).limit(apiKey);
+
+          headers = {
+            "Retry-After": reset.toString(),
+            "X-RateLimit-Limit": limit.toString(),
+            "X-RateLimit-Remaining": remaining.toString(),
+            "X-RateLimit-Reset": reset.toString(),
+          };
+
+          if (!success) {
+            return new Response("Too many requests.", {
+              status: 429,
+              headers,
+            });
+          }
+          await prisma.token.update({
+            where: {
+              hashedKey,
+            },
+            data: {
+              lastUsed: new Date(),
+            },
+          });
+          session = {
+            user: {
+              id: user.id,
+              name: user.name || "",
+              email: user.email || "",
+            },
+          };
         }
-        await prisma.token.update({
-          where: {
-            hashedKey,
-          },
-          data: {
-            lastUsed: new Date(),
-          },
-        });
-        session = {
-          user: {
-            id: user.id,
-            name: user.name || "",
-            email: user.email || "",
-          },
-        };
       } else {
         session = await getSession();
         if (!session?.user.id) {
