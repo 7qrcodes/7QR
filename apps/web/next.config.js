@@ -39,10 +39,10 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        hostname: "assets.7qr.codes", // for Dub's static assets
+        hostname: "assets.7qr.codes",
       },
       {
-        hostname: "pub-1865f12de1ba4e87a9c8999bd47adebc.r2.dev"
+        hostname: "pub-760f0f5a270c48a3aa7e591eb95639f5.r2.dev"
       },
       {
         hostname: "www.google.com",

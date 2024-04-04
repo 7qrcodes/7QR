@@ -100,6 +100,7 @@ export interface UserProps {
   id: string;
   name: string;
   email: string;
+  lang: string;
   image?: string;
   createdAt: Date;
   role: RoleProps;

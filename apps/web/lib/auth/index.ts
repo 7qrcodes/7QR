@@ -196,6 +196,7 @@ export const withAuth = (
       if (token) {
         try {
           const decodedUser = await decodeJWT(token);
+          console.log("decodedUser", decodedUser);
           const user = await prisma.user.findFirst({
             where: {
               id: {
@@ -546,6 +547,7 @@ export const withSession =
 
         try {
           const decodedUser = await decodeJWT(token);
+          console.log("decodedUser", decodedUser);
           const user = await prisma.user.findFirst({
             where: {
               id: {
