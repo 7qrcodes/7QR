@@ -7,20 +7,7 @@ export const metadata = constructMetadata({
   title: `Create your ${process.env.NEXT_PUBLIC_APP_NAME} account`,
 });
 
-const logos = [
-  "vercel",
-  "perplexity",
-  "prisma",
-  "tinybird",
-  "hashnode",
-  "cal",
-  "vercel",
-  "perplexity",
-  "prisma",
-  "tinybird",
-  "hashnode",
-  "cal",
-];
+const logos = [];
 
 export default function RegisterPage() {
   return (

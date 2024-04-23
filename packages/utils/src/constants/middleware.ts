@@ -15,6 +15,6 @@ export const DEFAULT_REDIRECTS = {
 
 export const DUB_HEADERS = {
   headers: {
-    "x-powered-by": "Dub.co - Link management for modern marketing teams",
+    "x-powered-by": "7QR.CODES",
   },
 };
